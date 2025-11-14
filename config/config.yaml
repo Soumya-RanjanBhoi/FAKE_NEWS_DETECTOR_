@@ -1,0 +1,11 @@
+data_transformation:
+  root_dir: dataset/data_transformation
+  data_path: dataset/data_ingestion
+  tokenizer_path: artifacts/tokenizer1
+  
+
+ModelConfig:
+  root_dir: artifacts
+  tokenizer_path: artificats/tokenizer1
+  model_path: artificats/model1
+

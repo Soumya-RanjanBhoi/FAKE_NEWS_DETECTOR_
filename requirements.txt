@@ -1,0 +1,41 @@
+boto3==1.40.52
+botocore==1.40.52
+mypy-boto3-s3==1.40.26
+
+# Core dependencies
+python-box>=7.0.0
+
+# Web frameworks
+# Web frameworks
+Flask==3.1.1
+fastapi==0.115.6
+starlette==0.41.2
+uvicorn==0.35.0
+
+
+# Templating and utilities
+Jinja2==3.1.6
+joblib==1.5.1
+pandas==2.2.3
+regex==2024.11.6
+requests==2.32.3
+tqdm==4.67.1
+PyYAML==6.0.2
+setuptools==80.9.0
+
+# Model and ML-related
+huggingface-hub==0.35.3
+transformers==4.57.1
+torch==2.8.0
+tokenizers==0.22.1
+safetensors==0.6.2
+sentencepiece==0.2.1
+
+# Pydantic and related
+pydantic==2.11.7
+pydantic_core==2.33.2
+
+# File handling
+pdfplumber==0.11.4
+python-docx==1.1.2
+python-multipart==0.0.9
