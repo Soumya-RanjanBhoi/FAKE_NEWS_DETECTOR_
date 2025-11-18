@@ -1,5 +1,5 @@
 from google import genai
-import json, re
+import json, re, traceback
 from api_calls.private_keys import secret_key 
 
 client = genai.Client(api_key=secret_key)
@@ -51,6 +51,19 @@ def verify_with_vertexai(statement: str) -> dict:
         return extract_json(raw_text)
 
     except Exception as e:
+        tb = traceback.format_exc()
+        print("⚠️ verify_with_vertexai exception:\n", tb)
+        try:
+            resp = getattr(e, 'response', None)
+            if resp is not None:
+                try:
+                    print("⚠️ Exception response body:\n", resp.text)
+                except Exception:
+                    print("⚠️ Exception response (no text available):", resp)
+        except Exception:
+            pass
+
         if "unexpected keyword argument 'system_instruction'" in str(e):
-             return {"label": "error", "reason": "API call failed: Check your SDK version. The 'system_instruction' argument may need to be moved to 'config' if you are on an older version of the SDK, but this code is using the current correct format. Ensure your 'google-genai' library is up to date."}
-        return {"label": "error", "reason": f"API call failed: {e}"}
+            return {"label": "error", "reason": "API call failed: Check your SDK version. The 'system_instruction' argument may need to be moved to 'config' if you are on an older version of the SDK. Ensure your 'google-genai' library is up to date.", "trace": tb}
+
+        return {"label": "error", "reason": f"API call failed: {e}", "trace": tb}

@@ -43,5 +43,8 @@ class PredictionPipelines:
         if str(ans).lower() == str(predicted_label).lower():
             return {"label": predicted_label, "probability": round(confidence * 100, 2)}
 
-        return {"label": ans, "probability": 1}
+        if str(ans).lower !="error":
+            return {"label": ans, "probability": 100}
+        else:
+            return {"label":"Unable to find any information about it","probability":0}
 
